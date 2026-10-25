@@ -3,7 +3,7 @@ DC motor voltage/speed controller with buttons and LCD Screen
 
 -Components-
 
-Arduino Mega 2560 Microcontroller
+Any Arduino Microcontroller (Alter SPI bus pins based on board and change them in code as well)
 
 Breadboard
 
@@ -29,7 +29,7 @@ LiquidCrystal by Arduino, Adafruit
 
 -IMPORTANT-
 
-The circuit diagram shows pin 11 connected to Register Select and pin 12 connected to Enable, but if you have a different arduino board, connect it according to your SPI Bus pins
+The circuit diagram shows pin 11 connected to Register Select and pin 12 connected to Enable due to the board in the diagram being an arduino UNO R3, but if you have a different arduino board, connect it according to your SPI Bus pins
 
 Pin 11 = MOSI/PICO
 
