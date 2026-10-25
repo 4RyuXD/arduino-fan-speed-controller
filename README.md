@@ -21,12 +21,13 @@ Diode Rectifier/1N4007 Diode
 
 Two 220 ohm Resistors
 
+104pF Capacitor
+
 -Libraries-
 
 LiquidCrystal by Arduino, Adafruit
 
 -IMPORTANT-
-The fan speed may randomly change due to DC motor electromagnetic induction causing false button pressed, keep the button pins away from DC motor pins to majorly prevent this.
 
 The circuit diagram shows pin 11 connected to Register Select and pin 12 connected to Enable, but if you have a different arduino board, connect it according to your SPI Bus pins
 
