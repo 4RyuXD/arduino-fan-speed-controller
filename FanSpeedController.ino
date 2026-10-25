@@ -8,9 +8,7 @@ const int btn2 = 6;
 const int btn3 = 5;
 const int fan = 9;
 
-bool lastbtn1 = HIGH;
-bool lastbtn2 = HIGH;
-bool lastbtn3 = HIGH;
+int state = 0;
 
 void setup() {
   pinMode(btn1, INPUT_PULLUP);
@@ -21,44 +19,51 @@ void setup() {
   
   lcd.begin(16, 2);
   lcd.setCursor(0, 0);
-  lcd.print("Fan ready twin");
-  digitalWrite(btn2, HIGH);
-  digitalWrite(btn1, HIGH);
-  digitalWrite(btn3, HIGH);
+  lcd.print("Fan ready");
 }
 
 void loop() {
-  if(digitalRead(btn3) == LOW && lastbtn3 == HIGH) {
-    speed = 255;
-    analogWrite(fan, speed);
-    lcd.setCursor(0, 0);
-    lcd.clear();
-    lcd.print("Fan Speed:");
-    lcd.setCursor(0, 1);
-    lcd.print("[3]   2   1");
-    delay(50);
+
+  if(digitalRead(btn3) == LOW) {
+    if (state != 2) {
+      state = 2;
+      speed = 255;
+      analogWrite(fan, speed);
+      lcd.setCursor(0, 0);
+      lcd.print("Fan Speed: MAX");
+      lcd.setCursor(0, 1);
+      lcd.print("[3]   2   1");
+    }
+    delay(150);
   }
-  if(digitalRead(btn2) == LOW && lastbtn2 == HIGH) {
-    speed = 127;
-    analogWrite(fan, speed);
-    lcd.setCursor(0, 0);
-    lcd.clear();
-    lcd.print("Fan Speed:");
-    lcd.setCursor(0, 1);
-    lcd.print("3   [2]   1");
-    delay(50);
+
+
+  if(digitalRead(btn2) == LOW) {
+    if (state != 1) {
+      state = 1;
+      speed = 127;
+      analogWrite(fan, speed);
+      lcd.setCursor(0, 0);
+      lcd.clear();
+      lcd.print("Fan Speed: MED");
+      lcd.setCursor(0, 1);
+      lcd.print("3   [2]   1");
+    }
+    delay(150);
   }
-  if(digitalRead(btn1) == LOW && lastbtn1 == HIGH) {
-    speed = 0;
-    analogWrite(fan, speed);
-    lcd.setCursor(0, 0);
-    lcd.clear();
-    lcd.print("Fan Speed: OFF");
-    lcd.setCursor(0, 1);
-    lcd.print("3   2   [1]");
-    delay(50);
+
+
+  if(digitalRead(btn1) == LOW) {
+    if (state != 0) {
+      state = 0;
+      speed = 0;
+      analogWrite(fan, speed);
+      lcd.setCursor(0, 0);
+      lcd.clear();
+      lcd.print("Fan Speed: OFF");
+      lcd.setCursor(0, 1);
+      lcd.print("3   2   [1]");
+    }
+    delay(150);
   }
-  lastbtn1 = digitalRead(btn1);
-  lastbtn2 = digitalRead(btn2);
-  lastbtn3 = digitalRead(btn3);
 }
